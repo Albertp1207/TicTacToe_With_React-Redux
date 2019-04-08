@@ -20,15 +20,27 @@ class Board extends Component {
     state = {
         winner: null
     }
+
     clickSquare = (ev)=>{
+        // console.log("ASD")
         const id = ev.target.getAttribute("squareid");
-        console.log("CLICk")
-        if(!id) return
+        // console.log("CLICk")
+        if(!id) {
+            return
+        }
         if(this.props.squareArr[id]) {
             alert("NOOO")// clickel  mi qani...
             return;
         }
+        // console.log(this.state.c + " ---CCC")
+        
         this.props.onClick(ev)
+        console.log(this.props.clickCount)
+        if(this.props.clickCount+1=== 9) {
+            this.props.addWinner("X = O")
+
+        }
+
         // alert(t);
     }
     componentDidUpdate(){
@@ -74,7 +86,7 @@ class Board extends Component {
 }
 
 const mapStateToProps = state=>{
-    return {squareArr:state.squareArr}
+    return {squareArr:state.squareArr,clickCount:state.clickCount}
 }
 const mapDispatchToProps = dispatch=>{
     return {

@@ -11,7 +11,19 @@ function squareArr(state=[],action) {
             return state;
     }
 }
+function clickCount(state=0,action) {
+    switch(action.type){
+        case "CLICK_SQUARE":
+            return state+1;
+        case "RESET_SQUARE_ARRAY":
+            return 0;
+        default:
+            return state
+
+    }
+}
 function addWinner(state=[],action) {
+    console.log("ADDWINNER")
     switch(action.type) {
         case "ADD_WINNER": 
         return [...state,action.winner];
@@ -33,5 +45,6 @@ function setWinner(state=null,action) {
 export default combineReducers({
     squareArr,
     addWinner,
-    setWinner
+    setWinner,
+    clickCount
 })
