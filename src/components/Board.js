@@ -20,7 +20,7 @@ class Board extends Component {
     state = {
         winner: null
     }
-
+    c = 0;
     clickSquare = (ev)=>{
         // console.log("ASD")
         const id = ev.target.getAttribute("squareid");
@@ -32,11 +32,13 @@ class Board extends Component {
             alert("NOOO")// clickel  mi qani...
             return;
         }
+        this.c++;
         // console.log(this.state.c + " ---CCC")
         
         this.props.onClick(ev)
         console.log(this.props.clickCount)
-        if(this.props.clickCount+1=== 9) {
+        if(this.c=== 9) {
+            this.c= 0;
             this.props.addWinner("X = O")
 
         }
@@ -47,6 +49,7 @@ class Board extends Component {
         
         let winner = this.checkWin()
         if(winner) {
+            this.c =0;
             this.props.addWinner(winner);
         }
     }
